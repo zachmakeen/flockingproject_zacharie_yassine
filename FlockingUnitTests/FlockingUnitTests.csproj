@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FlockingSimulation\FlockingSimulation.csproj" />
+    <ProjectReference Include="..\FlockingBackend\FlockingBackend.csproj" />
   </ItemGroup>
 
 </Project>
