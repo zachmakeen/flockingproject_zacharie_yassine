@@ -32,11 +32,7 @@
             "args": [
                 "watch",
                 "run",
-<<<<<<< HEAD
-                "${workspaceFolder}/FlockingSimulation/FlockingSimulation.csproj",
-=======
                 "${workspaceFolder}/FlockingUnitTests/FlockingUnitTests.csproj",
->>>>>>> 0ef3d30 (Create new project.)
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
