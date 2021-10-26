@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingSimulation/FlockingSimulation.csproj": {}
+    "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingSimulation\\FlockingSimulation.csproj": {}
   },
   "projects": {
-    "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingBackend/FlockingBackend.csproj": {
+    "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingBackend\\FlockingBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingBackend/FlockingBackend.csproj",
+        "projectUniqueName": "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingBackend\\FlockingBackend.csproj",
         "projectName": "FlockingBackend",
-        "projectPath": "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingBackend/FlockingBackend.csproj",
-        "packagesPath": "/Users/zach.makeen/.nuget/packages/",
-        "outputPath": "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingBackend/obj/",
+        "projectPath": "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingBackend\\FlockingBackend.csproj",
+        "packagesPath": "C:\\Users\\T450\\.nuget\\packages\\",
+        "outputPath": "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/zach.makeen/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\T450\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -52,21 +52,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingSimulation/FlockingSimulation.csproj": {
+    "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingSimulation\\FlockingSimulation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingSimulation/FlockingSimulation.csproj",
+        "projectUniqueName": "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingSimulation\\FlockingSimulation.csproj",
         "projectName": "FlockingSimulation",
-        "projectPath": "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingSimulation/FlockingSimulation.csproj",
-        "packagesPath": "/Users/zach.makeen/.nuget/packages/",
-        "outputPath": "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingSimulation/obj/",
+        "projectPath": "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingSimulation\\FlockingSimulation.csproj",
+        "packagesPath": "C:\\Users\\T450\\.nuget\\packages\\",
+        "outputPath": "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingSimulation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/zach.makeen/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\T450\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -78,8 +78,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingBackend/FlockingBackend.csproj": {
-                "projectPath": "/Users/zach.makeen/Documents/school/programming/projects/flockingproject_zacharie_yassine/FlockingBackend/FlockingBackend.csproj"
+              "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingBackend\\FlockingBackend.csproj": {
+                "projectPath": "H:\\simulations\\labs\\project\\flockingproject_zacharie_yassine\\FlockingBackend\\FlockingBackend.csproj"
               }
             }
           }
@@ -118,7 +118,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
