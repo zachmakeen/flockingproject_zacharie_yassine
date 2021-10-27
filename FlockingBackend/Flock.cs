@@ -30,7 +30,6 @@ namespace FlockingBackend
             CalcMovementEvent?.Invoke(sparrows);
             MoveEvent?.Invoke();
             CalcRavenFleeEvent?.Invoke(raven);
-
         }
 
         ///<summary>
@@ -48,7 +47,6 @@ namespace FlockingBackend
             CalcRavenFleeEvent += calculateRavenAvoidance;
 
         }
-
         
     }
 }
