@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace FlockingBackend
 {
     ///<summary>
-    ///This abstract class is used to represent a single bird. 
+    ///This abstract class is used to represent a single bird.
     ///</summary>
     public abstract class Bird
     {
