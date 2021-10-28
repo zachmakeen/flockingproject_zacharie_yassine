@@ -16,10 +16,10 @@ namespace FlockingBackend
         ///</summary>
         public Bird()
         {
-            Random random = new Random();
-            this.Position = new Vector2(random.Next(World.Height), random.Next(World.Width));
-            this.Velocity = new Vector2(random.Next(-4, 5), random.Next(-4, 5));
-            this.amountToSteer = new Vector2(0, 0);
+            // Random random = new Random();
+            // this.Position = new Vector2(random.Next(World.Height), random.Next(World.Width));
+            // this.Velocity = new Vector2(random.Next(-4, 5), random.Next(-4, 5));
+            // this.amountToSteer = new Vector2(0, 0);
         }
 
         ///<summary>
@@ -50,22 +50,22 @@ namespace FlockingBackend
         ///</summary>
         private void AppearOnOppositeSide()
         {
-            if (this.Position.Vx > World.Width)
-            {
-                this.Position = new Vector2(0, this.Position.Vy);
-            }
-            else if (this.Position.Vx < 0)
-            {
-                this.Position = new Vector2(World.Width, this.Position.Vy);
-            }
-            if (this.Position.Vy > World.Height)
-            {
-                this.Position = new Vector2(this.Position.Vx, 0);
-            }
-            else if (this.Position.Vy < 0)
-            {
-                this.Position = new Vector2(this.Position.Vx, World.Height);
-            }
+            // if (this.Position.Vx > World.Width)
+            // {
+            //     this.Position = new Vector2(0, this.Position.Vy);
+            // }
+            // else if (this.Position.Vx < 0)
+            // {
+            //     this.Position = new Vector2(World.Width, this.Position.Vy);
+            // }
+            // if (this.Position.Vy > World.Height)
+            // {
+            //     this.Position = new Vector2(this.Position.Vx, 0);
+            // }
+            // else if (this.Position.Vy < 0)
+            // {
+            //     this.Position = new Vector2(this.Position.Vx, World.Height);
+            // }
         }
 
         ///<summary>
