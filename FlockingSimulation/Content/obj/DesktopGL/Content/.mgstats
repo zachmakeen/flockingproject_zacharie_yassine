@@ -1,3 +1,0 @@
-Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"h:/simulations/labs/project/flockingproject_zacharie_yassine/FlockingSimulation/Content/raven.png","h:/simulations/labs/project/flockingproject_zacharie_yassine/FlockingSimulation/Content/bin/DesktopGL/Content/raven.xnb","TextureProcessor","Texture2DContent",488,3685,0.304592
-"h:/simulations/labs/project/flockingproject_zacharie_yassine/FlockingSimulation/Content/sparrow.png","h:/simulations/labs/project/flockingproject_zacharie_yassine/FlockingSimulation/Content/bin/DesktopGL/Content/sparrow.xnb","TextureProcessor","Texture2DContent",656,1685,0.0049733
