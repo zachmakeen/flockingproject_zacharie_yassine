@@ -18,12 +18,11 @@ namespace FlockingUnitTests
             List<Sparrow> sparrows = new List<Sparrow>();
             sparrows.Add(new Sparrow());
             Raven raven = new Raven();
-
             flock.RaiseMoveEvents(sparrows,raven);
 
         }
 
-        
+
     }
 }
 
