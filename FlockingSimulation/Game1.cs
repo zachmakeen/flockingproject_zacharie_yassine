@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using FlockingBackend;
 namespace FlockingSimulation
 {
     public class Game1 : Game
@@ -9,16 +9,31 @@ namespace FlockingSimulation
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private World world;
+        
+        private SparrowFlockSprite sparrowFlockSprite;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            world = new World();
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            // Set Screen width and height
+            
+           _graphics.PreferredBackBufferHeight = World.Height;
+            _graphics.PreferredBackBufferWidth = World.Width;
+
+            
+
+            sparrowFlockSprite = new SparrowFlockSprite(this,world.Sparrows);
+            Components.Add(sparrowFlockSprite);
+
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -36,7 +51,7 @@ namespace FlockingSimulation
                 Exit();
 
             // TODO: Add your update logic here
-
+            world.Update();
             base.Update(gameTime);
         }
 
