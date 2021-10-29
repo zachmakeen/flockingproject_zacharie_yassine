@@ -9,21 +9,21 @@ namespace FlockingBackend
         private Flock flock;
 
         // Number of sparrows
-        public static int initialiCounts;
+        public static int InitialiCounts{ get;   }
         // Canvas width 
-        public static int width;
+        public static int Width{ get; }
 
         // Canvas height 
-        public static int height;
+        public static int Height{ get; }
 
         // Neighbour radius
-        public static int neighbourRadius;
+        public static int NeighbourRadius{ get; }
 
         // Bird max speed 
-        public static int maxSpeed;
+        public static int MaxSpeed{ get; }
 
-           // Avoidance radius
-        public static int avoidanceRadius;
+        // Avoidance radius
+        public static int AvoidanceRadius{ get; }
         
         // Auto-property for sparoows list
         public List<Sparrow> Sparrows
@@ -41,12 +41,12 @@ namespace FlockingBackend
         static World()
         {
             // Number of sparrows
-            initialiCounts = 150;
-            width = 1000;
-            height = 500;
-            maxSpeed = 4;
-            neighbourRadius = 100;
-            avoidanceRadius = 50;
+            InitialiCounts = 150;
+            Width = 1000;
+            Height = 500;
+            MaxSpeed = 4;
+            NeighbourRadius = 100;
+            AvoidanceRadius = 50;
         }
 
         // Instance constructor 
@@ -70,11 +70,11 @@ namespace FlockingBackend
         
         {
             
-            for (int i = 0; i < initialiCounts; i++)
+            for (int i = 0; i < InitialiCounts; i++)
             {
                 Sparrow s = new Sparrow();
                 
-                // Subscribe To do ..    
+                flock.Subscribe(s.CalculateBehaviour,s.Move,s.CalculateRavenAvoidance);    
                 
                 Sparrows.Add(s);
             }
@@ -85,10 +85,12 @@ namespace FlockingBackend
         
         {
             
-            // To do
-           
+            flock.Subscribe(RavenBird.CalculateBehaviour,RavenBird.Move);
+   
         }
 
-
+        public void Update() {
+            flock.RaiseMoveEvents(Sparrows,RavenBird);
+        }
     }
 }

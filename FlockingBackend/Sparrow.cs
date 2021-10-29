@@ -38,6 +38,7 @@ namespace FlockingBackend
         {
             //TODO: Set the amountToSteer vector with the vectors returned by 
             //Cohesion, Alignment, Avoidance methods
+            
         }
 
         ///<summary>
@@ -46,7 +47,7 @@ namespace FlockingBackend
         ///<param name="raven">A Raven object</param>
         public void CalculateRavenAvoidance(Raven raven)
         {
-             //TODO: Add the vector returned by FleeRaven to the amountToSteer vector.
+            
         }
 
         //TODO: Code the following private helper methods to implement the flocking algorithm rules. 
@@ -55,7 +56,8 @@ namespace FlockingBackend
         {
             return new Vector2(0, 0);
         }
-        private Vector2 Cohesion (List<Sparrow> sparrows)
+
+               private Vector2 Cohesion (List<Sparrow> sparrows)
         {
             return new Vector2(0, 0);
         }
