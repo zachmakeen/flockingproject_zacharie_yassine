@@ -52,6 +52,10 @@ namespace FlockingUnitTests
 
            List<Sparrow> sparrows = w.Sparrows;
 
+           List<Sparrow> neigh = sparrows[2].getAllNeighbours(sparrows);
+
+           Console.WriteLine(neigh.Count);
+
            int result = sparrows.Count;
 
             Assert.AreEqual(150, result);

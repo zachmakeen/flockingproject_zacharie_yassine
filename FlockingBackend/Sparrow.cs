@@ -38,6 +38,8 @@ namespace FlockingBackend
         {
             //TODO: Set the amountToSteer vector with the vectors returned by 
             //Cohesion, Alignment, Avoidance methods
+            Vector2 alignedVector = Alignment(sparrows);
+            this.amountToSteer = alignedVector;
             
         }
 
@@ -54,10 +56,58 @@ namespace FlockingBackend
         //The method headers are declared below:
         private Vector2 Alignment (List<Sparrow> sparrows)
         {
-            return new Vector2(0, 0);
+            List<Sparrow> neighbours = getAllNeighbours(sparrows);
+
+            Vector2 averageVelocity = calculateAverageVelocity(neighbours);
+            
+
+            Vector2 normalizedAverageVelocity = Vector2.Normalize(averageVelocity) * World.MaxSpeed;
+
+            Vector2 alignVector =  normalizedAverageVelocity - this.Velocity  ;
+
+            Vector2 normalizedAlignVelocity = Vector2.Normalize(alignVector) * World.MaxSpeed;
+            
+            return normalizedAlignVelocity;
+
         }
 
-               private Vector2 Cohesion (List<Sparrow> sparrows)
+        private Vector2 calculateAverageVelocity(List<Sparrow> neighbours)
+        {
+                
+            Vector2 velocitySum = new Vector2(0,0);
+
+            foreach(Sparrow s in neighbours)
+            {
+               velocitySum += s.Velocity;
+            }
+
+            //return velocitySum;
+            return neighbours.Count > 0 ? velocitySum/neighbours.Count : velocitySum;
+            
+        }
+
+
+
+        // Get all Neighbours
+        public List<Sparrow> getAllNeighbours(List<Sparrow> sparrows)
+
+        {
+            List<Sparrow> neighbours = new List<Sparrow>();
+
+            foreach(Sparrow s in sparrows)
+            {
+        
+                if (World.NeighbourRadius * World.NeighbourRadius >= Vector2.DistanceSquared(this.Position, s.Position) && !this.Equals(s))
+                {
+                    neighbours.Add(s);
+                }
+            
+            }
+
+            return neighbours;
+        }
+
+        private Vector2 Cohesion (List<Sparrow> sparrows)
         {
             return new Vector2(0, 0);
         }
