@@ -27,9 +27,18 @@ namespace FlockingBackend
 
         public void RaiseMoveEvents(List<Sparrow> sparrows, Raven raven)
         {
+<<<<<<< HEAD
             CalcMovementEvent?.Invoke(sparrows);
             MoveEvent?.Invoke();
             CalcRavenFleeEvent?.Invoke(raven);
+=======
+            
+            CalcMovementEvent?.Invoke(sparrows);
+            MoveEvent?.Invoke();
+            CalcRavenFleeEvent?.Invoke(raven);
+            
+
+>>>>>>> c4d503614c88f4df2251c9bcc3b97109e47c9bda
         }
 
         ///<summary>
