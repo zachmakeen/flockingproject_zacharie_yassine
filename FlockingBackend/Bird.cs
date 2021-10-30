@@ -19,6 +19,7 @@ namespace FlockingBackend
             Random random = new Random();
             this.Position = new Vector2(random.Next(World.Width), random.Next(World.Height));
             this.Velocity = new Vector2(random.Next(-4, 5), random.Next(-4, 5));
+            
             this.amountToSteer = new Vector2(0, 0);
         }
 
