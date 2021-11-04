@@ -22,6 +22,19 @@ namespace FlockingUnitTests
             Assert.AreEqual(ux + vx, w.Vx, $"The new vector's x={w.Vx} is not equal to {ux + vx}");
             Assert.AreEqual(uy + vy, w.Vy, $"The new vector's y={w.Vy} is not equal to {uy + vy}");
         }
+        [TestMethod]
+        public void Addition()
+        {
+            float ux = 2;
+            float uy = 2;
+            Vector2 u = new Vector2(ux, uy);
+
+
+            Vector2 w = u / 2;
+
+            Assert.AreEqual(1,w.Vx);
+            Assert.AreEqual(1,w.Vy);
+        }
 
         [TestMethod]
         public void Subtraction_ReturnsBothVectorsSubtracted()

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 namespace FlockingBackend
 {
     ///<summary>
-    ///This class is the subscriber class that each bird subscribes to. The class also raises the events to calculate movement vector and move the birds.
-    ///This class is just a starting point. Complete the TODO sections
+    ///This class is the subscriber class that each bird subscribes to. 
+    ///The class also raises the events to calculate movement vector and move the birds.
     ///</summary>
     public class Flock
     {

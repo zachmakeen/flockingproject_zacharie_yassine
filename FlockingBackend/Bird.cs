@@ -17,9 +17,11 @@ namespace FlockingBackend
         public Bird()
         {
             Random random = new Random();
-            this.Position = new Vector2(random.Next(World.Width), random.Next(World.Height));
-            this.Velocity = new Vector2(random.Next(-4, 5), random.Next(-4, 5));
-            this.amountToSteer = new Vector2(0, 0);
+            this.Position = new Vector2((float)random.Next(World.Width), (float) random.Next(World.Height));
+            this.Velocity = new Vector2((float)random.Next(-4, 5), (float) random.Next(-4, 5));
+            
+            
+            this.amountToSteer = new Vector2(0.0f, 0.0f);
         }
 
         ///<summary>
@@ -33,7 +35,7 @@ namespace FlockingBackend
         {
             this.Position = new Vector2(ux, uy);
             this.Velocity = new Vector2(vx, vy);
-            this.amountToSteer = new Vector2(0, 0);
+            this.amountToSteer = new Vector2(0.0f, 0.0f);
         }
 
         ///<value> Property <c>Rotation</c> to rotate the bird to face the direction it is moving toward.</value>
@@ -83,6 +85,7 @@ namespace FlockingBackend
             this.Velocity += this.amountToSteer;
             this.Position += this.Velocity;
             this.AppearOnOppositeSide();
+           
         }
     }
 }
