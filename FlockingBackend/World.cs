@@ -7,11 +7,12 @@ namespace FlockingBackend
     ///</summary>
     public class World
     {
-        //Instance of flock obj
+        ///<value> flock <c>Flock</c> Instance of flock obj</value>
         private Flock flock;
 
         // Number of sparrows
         public static int InitialiCounts{ get;   }
+        
         // Canvas width 
         public static int Width{ get; }
 

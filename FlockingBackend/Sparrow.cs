@@ -9,18 +9,17 @@ namespace FlockingBackend
     public class Sparrow : Bird
     {
         
-
         ///<summary>
         ///This constructor is used to initialize the properties and variables of the base class
         ///</summary>
         public Sparrow() : base()
         {
-            //
+            // Inherits all fields from base class
         }
 
         ///<summary>
         ///This constructor is used to initialize the properties and variables of the base class.
-        /// Used for testing
+        /// Used for testing.
         ///</summary>
         ///<param name="ux">X value of velocity</param>
         ///<param name="uy">Y value of velocity</param>
@@ -28,21 +27,24 @@ namespace FlockingBackend
         ///<param name="vy">Y value of posiiton</param>
         public Sparrow(float ux, float uy, float vx, float vy) : base(ux, uy, vx, vy)
         {
-            //
+            // Inherits all fields from base class.
         }
 
         ///<summary>
-        ///This method is an event handler to calculate and set amountToSteer vector using the flocking algorithm rules.
-        /// It uses helper methods to ashieve this.
+        ///This method is an event handler to calculate and set amountToSteer
+        /// vector using the flocking algorithm rules.
+        /// It uses helper methods to achieve this.
         ///</summary>
         ///<param name="sparrows">List of sparrows</param>
         public override void CalculateBehaviour(List<Sparrow> sparrows) 
         {
-            
+            // Alignment
             Vector2 alignementVector = this.Alignment(sparrows);
+            // Cohesion
             Vector2 cohesionVector = this.Cohesion(sparrows);
+            // Avoidance
             Vector2 avoidanceVector = this.Avoidance(sparrows);
-            
+            // Set the sum of the above vectors to amountToSteer            
             base.amountToSteer = alignementVector + cohesionVector + avoidanceVector;
             
         }
@@ -65,6 +67,7 @@ namespace FlockingBackend
         ///<param name="sparrows">Sparrows list</param>
         public Vector2 Alignment (List<Sparrow> sparrows)
         {
+
             List<Sparrow> neighbours = this.getAllNeighbours(sparrows, World.NeighbourRadius);
             
             Vector2 averageVelocity = this.calculateAverageVelocity(neighbours) ;
@@ -105,7 +108,7 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        /// Helper method returns a list of sparrow thar are neighouberd with this sparrow
+        /// Helper method returns a list of sparrow thar are neighouberd with this sparrow.
         ///</summary>
         ///<param name="sparrows">Sparrows listt</param>
         ///<param name="radius">radius  neighbour</param>
@@ -154,7 +157,7 @@ namespace FlockingBackend
 
         ///<summary>
         /// Helper method calculates the average position of the neighbours.
-        /// returns the average position or Zero vector.
+        /// Returns the average position or Zero vector.
         ///</summary>
         ///<param name="sparrows">Neighbours list</param>
          private Vector2 calculateAveragePosition(List<Sparrow> neighbours)
@@ -167,7 +170,7 @@ namespace FlockingBackend
                positionSum += s.Position;
             }
 
-            //return positionZero or position average
+            //return positionZero or position average vector
             return neighbours.Count > 0 ? positionSum/neighbours.Count : positionSum;
             
         }
