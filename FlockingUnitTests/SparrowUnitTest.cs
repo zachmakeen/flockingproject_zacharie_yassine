@@ -229,11 +229,11 @@ namespace FlockingUnitTests
                 sparrows.Add(s2);
                 sparrows.Add(s3);
                 
-                float expX = -0.083f;
-                float expY = -0.996f;
+                float expX = 0.954f;
+                float expY = -0.299f;
 
                 //Act
-                Vector2 result = s1.Cohesion(sparrows);
+                Vector2 result = s1.Avoidance(sparrows);
 
                 //Assert
                 Assert.AreEqual(expX, result.Vx, 0.01);

@@ -57,7 +57,7 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        /// This method defines the first rule of boids algorithm (alignment).
+        /// This method defines the first rule of boids algorithm (Alignment).
         /// It uses helper method to calculate the vector that will be set
         /// to amount to steer.
         /// Method is public for test purposes
@@ -85,7 +85,7 @@ namespace FlockingBackend
         }
         ///<summary>
         /// Helper method calculates the average velocity of the neighbours.
-        /// returns the average velocity or o vector velocity.
+        /// returns the average velocity or zero vector velocity.
         ///</summary>
         ///<param name="sparrows">Neighbours list</param>
 
@@ -126,7 +126,7 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        /// This method defines the second rule of boids algorithm (cohesion).
+        /// This method defines the second rule of boids algorithm (Cohesion).
         /// It uses helper method to calculate the vector that will be added
         /// to amount to steer.
         /// Method is public for test purposes
@@ -152,7 +152,7 @@ namespace FlockingBackend
             return sparrowVelcity;
         }
 
-         ///<summary>
+        ///<summary>
         /// Helper method calculates the average position of the neighbours.
         /// returns the average position or Zero vector.
         ///</summary>
@@ -166,7 +166,6 @@ namespace FlockingBackend
             {
                positionSum += s.Position;
             }
-
 
             //return positionZero or position average
             return neighbours.Count > 0 ? positionSum/neighbours.Count : positionSum;
@@ -205,10 +204,9 @@ namespace FlockingBackend
         /// Helper method returns the average vector for avoidance rule
         ///</summary>
         ///<param name="sparrows">Sparrows listt</param>
-        ///<param name="radius">radius  neighbour</param>
         private Vector2 CalculateAverageAvoidance(List<Sparrow> neighbours)
         {
-             Vector2 avoidanceVelocity = new Vector2(0.0f,0.0f);
+            Vector2 avoidanceVelocity = new Vector2(0.0f,0.0f);
 
             foreach(Sparrow s in neighbours)
             {
@@ -221,7 +219,7 @@ namespace FlockingBackend
                avoidanceVelocity += differnce;
             }
 
-            //return positionZero or position average
+            //Return positionZero or position average
             return neighbours.Count > 0 ? avoidanceVelocity/neighbours.Count : avoidanceVelocity;
 
         }
