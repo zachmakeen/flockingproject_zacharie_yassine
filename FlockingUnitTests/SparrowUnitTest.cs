@@ -49,6 +49,7 @@ namespace FlockingUnitTests
                 
                 float expX = -0.181f;
                 float expY = -0.983f;
+                
 
                 //Act
                 Vector2 result = s1.Alignment(sparrows);
@@ -212,7 +213,8 @@ namespace FlockingUnitTests
             Assert.AreEqual(expY, result.Vy, 0.01);
         }
 
-        // Test if avoidance returns valid alignment vector with nearest neighbours   
+        // Test if avoidance returns valid alignment vector with nearest neighbours
+        // Not implemented yet   
         [TestMethod]
         public void TestAvoidanceSmallDistance()
             {

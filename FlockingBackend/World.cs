@@ -88,7 +88,8 @@ namespace FlockingBackend
             flock.Subscribe(RavenBird.CalculateBehaviour,RavenBird.Move);
    
         }
-
+        
+        // Raise events
         public void Update() {
             flock.RaiseMoveEvents(Sparrows,RavenBird);
         }
