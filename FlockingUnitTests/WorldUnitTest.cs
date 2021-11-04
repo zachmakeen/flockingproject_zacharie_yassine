@@ -5,9 +5,13 @@ using System;
 
 namespace FlockingUnitTests
 {
+    ///<summary>
+    /// This class test some of the functionalities of the world class.
+    ///</summary>
     [TestClass]
     public class WorldUnitTest
     {
+        // Test static fields of World class
         [TestMethod]
         public void TestStaticFieldsOfWorld()
         {
@@ -44,7 +48,8 @@ namespace FlockingUnitTests
            
         
         }
-         [TestMethod]
+        // Test of sparrows are initialized
+        [TestMethod]
         public void TestSparrowInitialization()
         {
           
@@ -58,7 +63,8 @@ namespace FlockingUnitTests
            
         }
 
-         [TestMethod]
+        // Test if Raven is initialized.
+        [TestMethod]
         public void TestRavenInitialization()
         {
           
@@ -69,8 +75,6 @@ namespace FlockingUnitTests
             Assert.IsNotNull(r);
            
         }
-
-   
 
     }
 }
