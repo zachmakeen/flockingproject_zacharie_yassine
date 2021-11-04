@@ -8,7 +8,7 @@ namespace FlockingBackend
     ///</summary>
     public class Sparrow : Bird
     {
-        //TODO: Add the constructor, properties and fields as specified in the instructions document.
+        
 
         ///<summary>
         ///This constructor is used to initialize the properties and variables of the base class
@@ -19,7 +19,8 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        ///This constructor is used to initialize the properties and variables of the base class
+        ///This constructor is used to initialize the properties and variables of the base class.
+        /// Used for testing
         ///</summary>
         ///<param name="ux">X value of velocity</param>
         ///<param name="uy">Y value of velocity</param>
@@ -31,15 +32,18 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        ///This method is an event handler to calculate and set amountToSteer vector using the flocking algorithm rules
+        ///This method is an event handler to calculate and set amountToSteer vector using the flocking algorithm rules.
+        /// It uses helper methods to ashieve this.
         ///</summary>
         ///<param name="sparrows">List of sparrows</param>
         public override void CalculateBehaviour(List<Sparrow> sparrows) 
         {
-            //TODO: Set the amountToSteer vector with the vectors returned by 
-            //Cohesion, Alignment, Avoidance methods
-            Vector2 alignedVector = Alignment(sparrows);
-            this.amountToSteer = alignedVector;
+            
+            Vector2 alignementVector = this.Alignment(sparrows);
+            Vector2 cohesionVector = this.Cohesion(sparrows);
+            Vector2 avoidanceVector = this.Avoidance(sparrows);
+            
+            base.amountToSteer = alignementVector + cohesionVector + avoidanceVector;
             
         }
 
@@ -52,68 +56,174 @@ namespace FlockingBackend
             
         }
 
-        //TODO: Code the following private helper methods to implement the flocking algorithm rules. 
-        //The method headers are declared below:
-        private Vector2 Alignment (List<Sparrow> sparrows)
+        ///<summary>
+        /// This method defines the first rule of boids algorithm (alignment).
+        /// It uses helper method to calculate the vector that will be set
+        /// to amount to steer.
+        /// Method is public for test purposes
+        ///</summary>
+        ///<param name="sparrows">Sparrows list</param>
+        public Vector2 Alignment (List<Sparrow> sparrows)
         {
-            List<Sparrow> neighbours = getAllNeighbours(sparrows);
-
-            Vector2 averageVelocity = calculateAverageVelocity(neighbours);
+            List<Sparrow> neighbours = this.getAllNeighbours(sparrows, World.NeighbourRadius);
             
+            Vector2 averageVelocity = this.calculateAverageVelocity(neighbours) ;
 
-            Vector2 normalizedAverageVelocity = Vector2.Normalize(averageVelocity) * World.MaxSpeed;
-
-            Vector2 alignVector =  normalizedAverageVelocity - this.Velocity  ;
-
-            Vector2 normalizedAlignVelocity = Vector2.Normalize(alignVector) * World.MaxSpeed;
+            // Return when velocity is zero
+            if(averageVelocity.Vx == 0.0f && averageVelocity.Vy == 0.0f){
+                return averageVelocity;
+            }
             
+            Vector2 normalizedAverageVelocity = (Vector2.Normalize(averageVelocity)) * World.MaxSpeed;
+
+            normalizedAverageVelocity = normalizedAverageVelocity - this.Velocity ;
+
+            Vector2 normalizedAlignVelocity = (Vector2.Normalize(normalizedAverageVelocity));
+
             return normalizedAlignVelocity;
 
         }
+        ///<summary>
+        /// Helper method calculates the average velocity of the neighbours.
+        /// returns the average velocity or o vector velocity.
+        ///</summary>
+        ///<param name="sparrows">Neighbours list</param>
 
         private Vector2 calculateAverageVelocity(List<Sparrow> neighbours)
         {
                 
-            Vector2 velocitySum = new Vector2(0,0);
+            Vector2 velocitySum = new Vector2(0.0f,0.0f);
 
             foreach(Sparrow s in neighbours)
             {
                velocitySum += s.Velocity;
             }
 
-            //return velocitySum;
+            //return VelocityZero or velocity average
             return neighbours.Count > 0 ? velocitySum/neighbours.Count : velocitySum;
             
         }
 
-
-
-        // Get all Neighbours
-        public List<Sparrow> getAllNeighbours(List<Sparrow> sparrows)
+        ///<summary>
+        /// Helper method returns a list of sparrow thar are neighouberd with this sparrow
+        ///</summary>
+        ///<param name="sparrows">Sparrows listt</param>
+        ///<param name="radius">radius  neighbour</param>
+        private List<Sparrow> getAllNeighbours(List<Sparrow> sparrows, int radius)
 
         {
-            List<Sparrow> neighbours = new List<Sparrow>();
+            List<Sparrow> neighbours = new List<Sparrow>(); 
 
             foreach(Sparrow s in sparrows)
             {
-        
-                if (World.NeighbourRadius * World.NeighbourRadius >= Vector2.DistanceSquared(this.Position, s.Position) && !this.Equals(s))
+                if (this != s && radius * radius > Vector2.DistanceSquared(this.Position, s.Position))
                 {
                     neighbours.Add(s);
                 }
-            
             }
 
             return neighbours;
         }
 
-        private Vector2 Cohesion (List<Sparrow> sparrows)
+        ///<summary>
+        /// This method defines the second rule of boids algorithm (cohesion).
+        /// It uses helper method to calculate the vector that will be added
+        /// to amount to steer.
+        /// Method is public for test purposes
+        ///</summary>
+        ///<param name="sparrows">Sparrows list</param>
+        public Vector2 Cohesion (List<Sparrow> sparrows)
         {
-            return new Vector2(0, 0);
+            List<Sparrow> neighbours = this.getAllNeighbours(sparrows, World.NeighbourRadius);
+            
+            Vector2 averagePosition = this.calculateAveragePosition(neighbours) ;
+
+            // Return when velocity is zero
+            if(averagePosition.Vx == 0.0f && averagePosition.Vy == 0.0f){
+                return averagePosition;
+            }
+
+            averagePosition = averagePosition - this.Position ;
+
+            Vector2 normalizedDisplacementVector = (Vector2.Normalize(averagePosition)) * World.MaxSpeed;
+
+            Vector2 sparrowVelcity = Vector2.Normalize(normalizedDisplacementVector - this.Velocity) ;
+            
+            return sparrowVelcity;
         }
-        private Vector2 Avoidance (List<Sparrow> sparrows)
+
+         ///<summary>
+        /// Helper method calculates the average position of the neighbours.
+        /// returns the average position or Zero vector.
+        ///</summary>
+        ///<param name="sparrows">Neighbours list</param>
+         private Vector2 calculateAveragePosition(List<Sparrow> neighbours)
         {
-            return new Vector2(0, 0);
+                
+            Vector2 positionSum = new Vector2(0.0f,0.0f);
+
+            foreach(Sparrow s in neighbours)
+            {
+               positionSum += s.Position;
+            }
+
+
+            //return positionZero or position average
+            return neighbours.Count > 0 ? positionSum/neighbours.Count : positionSum;
+            
+        }
+
+        ///<summary>
+        /// This method defines the third rule of boids algorithm (avoidance).
+        /// It uses helper method to calculate the vector that will be added
+        /// to amount to steer.
+        /// Method is public for test purposes
+        ///</summary>
+        ///<param name="sparrows">Sparrows list</param>
+        public Vector2 Avoidance (List<Sparrow> sparrows)
+        {
+            List<Sparrow> neighbours = this.getAllNeighbours(sparrows, World.AvoidanceRadius);
+
+            Vector2 avoidonceAverage = CalculateAverageAvoidance(neighbours);
+
+            // Return when average is zero
+            if(avoidonceAverage.Vx == 0.0f && avoidonceAverage.Vy == 0.0f){
+                return avoidonceAverage;
+            }
+
+            Vector2 normalizedAverageAvoidance = (Vector2.Normalize(avoidonceAverage)) * World.MaxSpeed;
+
+            normalizedAverageAvoidance = normalizedAverageAvoidance- this.Velocity ;
+
+            Vector2 avoidanceVector = (Vector2.Normalize(normalizedAverageAvoidance));
+
+            return avoidanceVector;
+
+        }
+
+         ///<summary>
+        /// Helper method returns the average vector for avoidance rule
+        ///</summary>
+        ///<param name="sparrows">Sparrows listt</param>
+        ///<param name="radius">radius  neighbour</param>
+        private Vector2 CalculateAverageAvoidance(List<Sparrow> neighbours)
+        {
+             Vector2 avoidanceVelocity = new Vector2(0.0f,0.0f);
+
+            foreach(Sparrow s in neighbours)
+            {
+               float distance  = (Vector2.DistanceSquared(this.Position, s.Position));
+
+               Vector2 differnce = this.Position - s.Position;
+               
+               differnce /= distance;
+
+               avoidanceVelocity += differnce;
+            }
+
+            //return positionZero or position average
+            return neighbours.Count > 0 ? avoidanceVelocity/neighbours.Count : avoidanceVelocity;
+
         }
         private Vector2 FleeRaven(Raven raven)
         {

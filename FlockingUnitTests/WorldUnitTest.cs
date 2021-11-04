@@ -48,19 +48,29 @@ namespace FlockingUnitTests
         public void TestSparrowInitialization()
         {
           
-           World w = new World();
+            World w = new World();
 
-           List<Sparrow> sparrows = w.Sparrows;
+            List<Sparrow> sparrows = w.Sparrows;
 
-           List<Sparrow> neigh = sparrows[2].getAllNeighbours(sparrows);
-
-           Console.WriteLine(neigh.Count);
-
-           int result = sparrows.Count;
+            int result = sparrows.Count;
 
             Assert.AreEqual(150, result);
            
-        
         }
+
+         [TestMethod]
+        public void TestRavenInitialization()
+        {
+          
+            World w = new World();
+
+            Raven r = w.RavenBird;
+
+            Assert.IsNotNull(r);
+           
+        }
+
+   
+
     }
 }

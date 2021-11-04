@@ -66,7 +66,9 @@ namespace FlockingBackend
         public static Vector2 Normalize(Vector2 u)
         {
             float magnitude = (float) Math.Sqrt(Math.Pow(u.Vx, 2) + Math.Pow(u.Vy, 2));
-            return new Vector2(u.Vx / magnitude, u.Vy / magnitude);
+            if (magnitude >0)
+                return new Vector2(u.Vx / magnitude, u.Vy / magnitude);
+            return new Vector2(u.Vx / 1, u.Vy / 1);     
         }
     }
 }
