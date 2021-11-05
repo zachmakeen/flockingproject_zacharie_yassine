@@ -57,7 +57,8 @@ namespace FlockingUnitTests
 
             List<Sparrow> sparrows = w.Sparrows;
 
-            int result = sparrows.Count;
+
+           int result = sparrows.Count;
 
             Assert.AreEqual(150, result);
            
