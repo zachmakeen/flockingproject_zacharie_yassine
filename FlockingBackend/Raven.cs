@@ -41,18 +41,19 @@ namespace FlockingBackend
         ///This method is a helper method to calculate determine where the closest sparrow us
         ///</summary>
         ///<param name="sparrows">List of sparrows</param>
-        private Vector2 ChaseSparrow (List<Sparrow> sparrows)
+        public Vector2 ChaseSparrow (List<Sparrow> sparrows) //change back to private
         {
+            Sparrow nearestSparrow = null;
             foreach (Sparrow sparrow in sparrows)
             {
                 float distance = Vector2.DistanceSquared(this.Position, sparrow.Position);
                 if (distance < Math.Pow(World.AvoidanceRadius, 2))
                 {
-                    return sparrow.Position - this.Position;
+                    nearestSparrow = sparrow;
                 }
             }
 
-            return new Vector2(0, 0);
+            return nearestSparrow != null ? (nearestSparrow.Position - this.Position) : new Vector2(0, 0);
         }
 
         ///<summary>
