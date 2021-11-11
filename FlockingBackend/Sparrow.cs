@@ -55,7 +55,8 @@ namespace FlockingBackend
         ///<param name="raven">A Raven object</param>
         public void CalculateRavenAvoidance(Raven raven)
         {
-            
+            Vector2 fleeRavenVector = this.FleeRaven(raven);
+            base.amountToSteer = fleeRavenVector;
         }
 
         ///<summary>
@@ -226,8 +227,21 @@ namespace FlockingBackend
             return neighbours.Count > 0 ? avoidanceVelocity/neighbours.Count : avoidanceVelocity;
 
         }
+        ///<summary>
+        /// Helper method returns the a vector that represt the amount to steer
+        /// to flee araven
+        ///</summary>
+        ///<param name="raven">Raven bird</param>
         private Vector2 FleeRaven(Raven raven)
         {
+            float distance = Vector2.DistanceSquared(this.Position, raven.Position);
+            if(distance < World.AvoidanceRadius * World.AvoidanceRadius)
+            {
+                Vector2 diff = this.Position - raven.Position;
+                Vector2 dividedByDistance = diff/distance;
+                Vector2 normalizeFleeRavenVector = Vector2.Normalize(dividedByDistance) * World.MaxSpeed;
+                return normalizeFleeRavenVector;
+            }
             return new Vector2(0, 0);
         }
     }
