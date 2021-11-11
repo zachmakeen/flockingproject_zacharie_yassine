@@ -7,11 +7,16 @@ namespace FlockingSimulation
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
+
         private SpriteBatch _spriteBatch;
 
         private World world;
-        
+
         private SparrowFlockSprite sparrowFlockSprite;
+
+        private RavenSprite ravenSprite;
+
+        //
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -23,15 +28,16 @@ namespace FlockingSimulation
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
             // Set Screen width and height
-            
-           _graphics.PreferredBackBufferHeight = World.Height;
+            _graphics.PreferredBackBufferHeight = World.Height;
             _graphics.PreferredBackBufferWidth = World.Width;
 
-            
-
-            sparrowFlockSprite = new SparrowFlockSprite(this,world.Sparrows);
+            sparrowFlockSprite = new SparrowFlockSprite(this, world.Sparrows);
             Components.Add(sparrowFlockSprite);
+
+            ravenSprite = new RavenSprite(this, world.RavenBird);
+            Components.Add(ravenSprite);
 
             _graphics.ApplyChanges();
 
