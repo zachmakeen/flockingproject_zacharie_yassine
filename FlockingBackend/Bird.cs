@@ -50,7 +50,7 @@ namespace FlockingBackend
         ///<summary>
         ///This method is a private helper method to make birds reappear on the opposite edge if they go outside the bounds of the screen
         ///</summary>
-        private void AppearOnOppositeSide()
+        protected void AppearOnOppositeSide()
         {
             if (this.Position.Vx > World.Width)
             {
@@ -79,9 +79,8 @@ namespace FlockingBackend
         ///<summary>
         ///This method is an event handler that updates the velocity and position of a bird.
         ///</summary>
-        public void Move()
+        public virtual void Move()
         {
-            
             this.Velocity += this.amountToSteer;
             this.Position += this.Velocity;
             this.AppearOnOppositeSide();
