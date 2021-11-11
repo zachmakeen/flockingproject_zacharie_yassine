@@ -8,8 +8,6 @@ namespace FlockingBackend
     ///</summary>
     public class Raven : Bird
     {
-        //TODO: Add the constructor, properties and fields as specified in the instructions document.
-
         ///<summary>
         ///This constructor is used to initialize the properties and variables of the base class
         ///</summary>
@@ -36,14 +34,37 @@ namespace FlockingBackend
         ///<param name="sparrows">List of sparrows</param>
         public override void CalculateBehaviour(List<Sparrow> sparrows) 
         {
-            //TODO: Set the amountToSteer vector with the vector returned by the ChaseSparrow.
+            this.amountToSteer += ChaseSparrow(sparrows);
         }
 
-        //TODO: Code the following private helper methods to implement chase sparrows.
-        //The method header are declared below:
-        private Vector2 ChaseSparrow (List<Sparrow> sparrows)
+        ///<summary>
+        ///This method is a helper method to calculate determine where the closest sparrow us
+        ///</summary>
+        ///<param name="sparrows">List of sparrows</param>
+        public Vector2 ChaseSparrow (List<Sparrow> sparrows) //change back to private
         {
-            return new Vector2(0, 0);
+            Sparrow nearestSparrow = null;
+            foreach (Sparrow sparrow in sparrows)
+            {
+                float distance = Vector2.DistanceSquared(this.Position, sparrow.Position);
+                if (distance < Math.Pow(World.AvoidanceRadius, 2))
+                {
+                    nearestSparrow = sparrow;
+                }
+            }
+
+            return nearestSparrow != null ? (nearestSparrow.Position - this.Position) : new Vector2(0, 0);
+        }
+
+        ///<summary>
+        ///This method is an event handler that updates the velocity and position of a bird.
+        ///</summary>
+        public override void Move()
+        {
+            this.Velocity += this.amountToSteer;
+            this.Velocity = Vector2.Normalize(this.Velocity) * World.MaxSpeed;
+            this.Position += this.Velocity;
+            this.AppearOnOppositeSide();
         }
     }
 }
