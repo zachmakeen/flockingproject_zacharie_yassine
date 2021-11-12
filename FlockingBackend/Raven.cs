@@ -34,7 +34,7 @@ namespace FlockingBackend
         ///<param name="sparrows">List of sparrows</param>
         public override void CalculateBehaviour(List<Sparrow> sparrows) 
         {
-            this.amountToSteer += ChaseSparrow(sparrows);
+            this.amountToSteer = ChaseSparrow(sparrows);
         }
 
         ///<summary>
@@ -44,11 +44,15 @@ namespace FlockingBackend
         public Vector2 ChaseSparrow (List<Sparrow> sparrows) //change back to private
         {
             Sparrow nearestSparrow = null;
+            float shortestDistance = float.MaxValue;
+            
             foreach (Sparrow sparrow in sparrows)
             {
                 float distance = Vector2.DistanceSquared(this.Position, sparrow.Position);
-                if (distance < Math.Pow(World.AvoidanceRadius, 2))
+                
+                if (distance < Math.Pow(World.AvoidanceRadius, 2) && distance < shortestDistance)
                 {
+                    shortestDistance = distance;
                     nearestSparrow = sparrow;
                 }
             }

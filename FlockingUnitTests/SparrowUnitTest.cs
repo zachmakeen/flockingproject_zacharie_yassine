@@ -243,6 +243,28 @@ namespace FlockingUnitTests
             Assert.AreEqual(expY, result.Vy, 0.01);
         }
 
+        // Test if avoidance returns valid alignment vector with nearest neighbours
+        // Not implemented yet   
+        [TestMethod]
+        public void TestFleeRaven()
+        {
+            // Arrange
+            Raven raven = new Raven(4,4,-3,4);
+
+            Sparrow s1 = new Sparrow( 6, 6, -3,4 );
+        
+
+            //Act
+            Vector2 result = s1.FleeRaven(raven);
+
+             float expX = 0.954f;
+            float expY = -0.299f;
+
+            //Assert
+            Assert.AreEqual(expX, result.Vx, 0.01);
+            Assert.AreEqual(expY, result.Vy, 0.01);
+        }
+
     }
     
 }
