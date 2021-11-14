@@ -236,10 +236,11 @@ namespace FlockingBackend
         public Vector2 FleeRaven(Raven raven)
         {
             float distance = Vector2.DistanceSquared(this.Position, raven.Position);
-            
+        
             if ( distance == 0){
-                return Vector2.Normalize(this.Velocity) ;
+                return Vector2.Normalize(this.Velocity);
             }
+            
             if(distance < World.AvoidanceRadius * World.AvoidanceRadius)
             {
                 Vector2 diff = this.Position - raven.Position;
@@ -250,6 +251,7 @@ namespace FlockingBackend
             
             return new Vector2(0, 0);
         
-         }
+        }
+        
     }
 }
