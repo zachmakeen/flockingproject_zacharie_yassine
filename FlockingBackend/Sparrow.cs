@@ -76,9 +76,8 @@ namespace FlockingBackend
             Vector2 averageVelocity = this.calculateAverageVelocity(neighbours) ;
 
             // Return when velocity is zero
-            if(Vector2.CheckIfZero(averageVelocity)){
+            if(Vector2.CheckIfZero(averageVelocity))
                 return averageVelocity;
-            }
             
             //Calculate alignment vector
             Vector2 normalizedAverageVelocity = (Vector2.Normalize(averageVelocity)) * World.MaxSpeed;

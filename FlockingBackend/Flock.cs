@@ -27,12 +27,9 @@ namespace FlockingBackend
 
         public void RaiseMoveEvents(List<Sparrow> sparrows, Raven raven)
         {
-            
             CalcMovementEvent?.Invoke(sparrows);
             CalcRavenFleeEvent?.Invoke(raven);
             MoveEvent?.Invoke();
-            
-
         }
 
         ///<summary>
@@ -44,12 +41,8 @@ namespace FlockingBackend
         public void Subscribe(Delegates.CalculateMoveVector calculateMoveVector, Delegates.MoveBird moveBird, Delegates.CalculateRavenAvoidance calculateRavenAvoidance = default)
         {
             CalcMovementEvent += calculateMoveVector;
-
             MoveEvent += moveBird;
-
             CalcRavenFleeEvent += calculateRavenAvoidance;
-
         }
-        
     }
 }
