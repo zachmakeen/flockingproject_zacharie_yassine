@@ -13,7 +13,7 @@ namespace FlockingBackend
         ///</summary>
         public Raven() : base()
         {
-            //
+            //Inherits all fields from base class
         }
 
         ///<summary>
@@ -25,7 +25,7 @@ namespace FlockingBackend
         ///<param name="vy">Y value of posiiton</param>
         public Raven(float ux, float uy, float vx, float vy) : base(ux, uy, vx, vy)
         {
-            //
+            //Inherits all fields from base class
         }
 
         ///<summary>
@@ -46,6 +46,7 @@ namespace FlockingBackend
             Sparrow nearestSparrow = null;
             float shortestDistance = float.MaxValue;
             
+            //Find the sparrow closest to the raven
             foreach (Sparrow sparrow in sparrows)
             {
                 float distance = Vector2.DistanceSquared(this.Position, sparrow.Position);
@@ -57,6 +58,7 @@ namespace FlockingBackend
                 }
             }
 
+            //Return the difference between the nearest sparrow and the raven
             return nearestSparrow != null ? (nearestSparrow.Position - this.Position) : new Vector2(0, 0);
         }
 
