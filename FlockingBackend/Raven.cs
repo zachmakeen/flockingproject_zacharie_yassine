@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace FlockingBackend
 {
     ///<summary>
-    ///This class is used to represent a single raven. 
+    /// This class is used to represent a single raven. 
     ///</summary>
     public class Raven : Bird
     {
         ///<summary>
-        ///This constructor is used to initialize the properties and variables of the base class
+        /// This constructor is used to initialize the properties and variables of the base class
         ///</summary>
         public Raven() : base()
         {
@@ -17,7 +17,7 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        ///This constructor is used to initialize the properties and variables of the base class
+        /// This constructor is used to initialize the properties and variables of the base class
         ///</summary>
         ///<param name="ux">X value of velocity</param>
         ///<param name="uy">Y value of velocity</param>
@@ -38,12 +38,14 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        ///This method is a helper method to calculate determine where the closest sparrow us
+        /// This method is a helper method to calculate determine where the closest sparrow us
+        /// The method is public for test puproses.
         ///</summary>
         ///<param name="sparrows">List of sparrows</param>
         public Vector2 ChaseSparrow (List<Sparrow> sparrows) //change back to private
         {
             Sparrow nearestSparrow = null;
+            
             float shortestDistance = float.MaxValue;
             
             //Find the sparrow closest to the raven
@@ -58,7 +60,7 @@ namespace FlockingBackend
                 }
             }
 
-            //Return the difference between the nearest sparrow and the raven
+            //Return the difference between the nearest sparrow and the raven or a zero vector
             return nearestSparrow != null ? (nearestSparrow.Position - this.Position) : new Vector2(0, 0);
         }
 

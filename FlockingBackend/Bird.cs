@@ -28,8 +28,8 @@ namespace FlockingBackend
         ///</summary>
         ///<param name="ux">X value of velocity</param>
         ///<param name="uy">Y value of velocity</param>
-        ///<param name="vx">X value of posiiton</param>
-        ///<param name="vy">Y value of posiiton</param>
+        ///<param name="vx">X value of position</param>
+        ///<param name="vy">Y value of position</param>
         public Bird(float ux, float uy, float vx, float vy)
         {
             this.Position = new Vector2(ux, uy);
@@ -47,7 +47,7 @@ namespace FlockingBackend
         public Vector2 Velocity { get; protected set; }
 
         ///<summary>
-        ///This method is a private helper method to make birds reappear on the opposite edge if they go outside the bounds of the screen
+        ///This method is a protected helper method to make birds reappear on the opposite edge if they go outside the bounds of the screen
         ///</summary>
         protected void AppearOnOppositeSide()
         {
@@ -70,7 +70,7 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        ///This method is an event handler to calculate and set amountToSteer vector using the flocking algorithm rules
+        ///This method is an event handler to calculate and set amountToSteer vector using the flocking algorithm rules.
         ///</summary>
         ///<param name="sparrows">List of sparrows</param>
         public abstract void CalculateBehaviour(List<Sparrow> sparrows);

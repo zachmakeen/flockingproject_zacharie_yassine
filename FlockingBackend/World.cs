@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace FlockingBackend
 {
     ///<summary>
-    ///This class is the access to the flock world.
+    ///This class is the access to the flock world (Backend).
     ///</summary>
     public class World
     {
@@ -90,7 +90,7 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        ///This method raise the events . 
+        /// This method raise the events . 
         ///</summary>
         public void Update()
         {
