@@ -11,34 +11,28 @@ namespace FlockingBackend
         private Flock flock;
 
         // Number of sparrows
-        public static int InitialiCounts{ get;   }
-        
+        public static int InitialiCounts { get; }
+
         // Canvas width 
-        public static int Width{ get; }
+        public static int Width { get; }
 
         // Canvas height 
-        public static int Height{ get; }
+        public static int Height { get; }
 
         // Neighbour radius
-        public static int NeighbourRadius{ get; }
+        public static int NeighbourRadius { get; }
 
         // Bird max speed 
-        public static int MaxSpeed{ get; }
+        public static int MaxSpeed { get; }
 
         // Avoidance radius
-        public static int AvoidanceRadius{ get; }
-        
+        public static int AvoidanceRadius { get; }
+
         // Auto-property for sparrows list
-        public List<Sparrow> Sparrows
-        {
-            get;
-        }
+        public List<Sparrow> Sparrows { get; }
 
         // Auto-property for Raven
-        public Raven RavenBird
-        {
-            get;
-        }
+        public Raven RavenBird { get; }
 
         ///<summary>
         /// Static constructor for static fields 
@@ -56,32 +50,25 @@ namespace FlockingBackend
         ///<summary>
         /// Instance constructor initializes the world fields
         ///</summary>
-        public World() {
-            
+        public World()
+        {
             flock = new Flock();
-
             Sparrows = new List<Sparrow>();
-
             InitializeAndSubscribeSparrows();
-
             RavenBird = new Raven();
-
             SubscribeRaven();
-
         }
 
         ///<summary>
         /// Helper method Initialize and add sparrow to the list.
         /// Also subscribe each sparrow. 
         ///</summary>
-        private void InitializeAndSubscribeSparrows()    
-        {   
+        private void InitializeAndSubscribeSparrows()
+        {
             for (int i = 0; i < InitialiCounts; i++)
             {
                 Sparrow s = new Sparrow();
-                
-                flock.Subscribe(s.CalculateBehaviour,s.Move,s.CalculateRavenAvoidance);    
-                
+                flock.Subscribe(s.CalculateBehaviour, s.Move, s.CalculateRavenAvoidance);
                 Sparrows.Add(s);
             }
         }
@@ -90,15 +77,16 @@ namespace FlockingBackend
         ///Helper method subscribe the raven. 
         ///</summary>
         private void SubscribeRaven()
-        {    
-            flock.Subscribe(RavenBird.CalculateBehaviour,RavenBird.Move);
+        {
+            flock.Subscribe(RavenBird.CalculateBehaviour, RavenBird.Move);
         }
-    
+
         ///<summary>
         ///This method raise the events . 
         ///</summary>
-        public void Update() {
-            flock.RaiseMoveEvents(Sparrows,RavenBird);
+        public void Update()
+        {
+            flock.RaiseMoveEvents(Sparrows, RavenBird);
         }
     }
 }

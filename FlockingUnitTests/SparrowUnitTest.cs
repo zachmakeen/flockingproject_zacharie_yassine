@@ -243,6 +243,72 @@ namespace FlockingUnitTests
             Assert.AreEqual(expY, result.Vy, 0.01);
         }
 
+        // Test flee raven result vector
+        // Not implemented yet   
+        [TestMethod]
+        public void TestFleeRaven()
+        {
+            // Arrange
+            Raven raven = new Raven(4,4,-3,4);
+
+            Sparrow s1 = new Sparrow( 6, 6, -3,4 );
+        
+
+            //Act
+            Vector2 result = s1.FleeRaven(raven);
+
+            float expX = 2.832f;
+            float expY = 2.832f;
+
+            //Assert
+            Assert.AreEqual(expX, result.Vx, 0.01);
+            Assert.AreEqual(expY, result.Vy, 0.01);
+        }
+
+        // Test flee raven result zero vector
+        // Not implemented yet   
+        [TestMethod]
+        public void TestFleeRavenZero()
+        {
+            // Arrange
+            Raven raven = new Raven(4,4,-3,4);
+
+            Sparrow s1 = new Sparrow( 100, 100, -3,4 );
+        
+
+            //Act
+            Vector2 result = s1.FleeRaven(raven);
+
+            float expX = 0.0f;
+            float expY = 0.0f;
+
+            //Assert
+            Assert.AreEqual(expX, result.Vx, 0.01);
+            Assert.AreEqual(expY, result.Vy, 0.01);
+        }
+
+           // Test flee raven result zero vector
+        // Not implemented yet   
+        [TestMethod]
+        public void TestFleeDistanceZero()
+        {
+            // Arrange
+            Raven raven = new Raven(4,4,-3,4);
+
+            Sparrow s1 = new Sparrow(4,4, -3,4 );
+        
+
+            //Act
+            Vector2 result = s1.FleeRaven(raven);
+
+            float expX = -0.600f;
+            float expY = 0.800f;
+
+            //Assert
+            Assert.AreEqual(expX, result.Vx, 0.01);
+            Assert.AreEqual(expY, result.Vy, 0.01);
+        }
+
     }
     
 }

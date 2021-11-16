@@ -70,5 +70,10 @@ namespace FlockingBackend
                 return new Vector2(u.Vx / magnitude, u.Vy / magnitude);
             return new Vector2(u.Vx / 1, u.Vy / 1);     
         }
+
+        public static Boolean CheckIfZero(Vector2 u)
+        {
+            return u.Vx == 0.0f && u.Vy == 0.0f;
+        }
     }
 }
