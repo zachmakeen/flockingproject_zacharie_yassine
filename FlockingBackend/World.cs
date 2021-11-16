@@ -31,6 +31,12 @@ namespace FlockingBackend
         // Auto-property for sparrows list
         public List<Sparrow> Sparrows { get; }
 
+        // The bird lower bound velocity range
+        public static int LowerBoundVelocity { get; }
+
+        // The bird higher bound velocity range
+         public static int HigherBoundVelocity { get; }
+
         // Auto-property for Raven
         public Raven RavenBird { get; }
 
@@ -45,6 +51,8 @@ namespace FlockingBackend
             MaxSpeed = 4;
             NeighbourRadius = 100;
             AvoidanceRadius = 50;
+            LowerBoundVelocity = -4;
+            HigherBoundVelocity = 5;
         }
 
         ///<summary>
