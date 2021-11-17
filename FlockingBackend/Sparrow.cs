@@ -55,8 +55,9 @@ namespace FlockingBackend
         ///<param name="raven">A Raven object</param>
         public void CalculateRavenAvoidance(Raven raven)
         {
-            //Calculate reaven avoidance
+            // Calculate reaven avoidance
             Vector2 fleeRavenVector = this.FleeRaven(raven);
+            //Add rule result  to amountTosteer
             base.amountToSteer += fleeRavenVector;
         }
 
@@ -69,10 +70,10 @@ namespace FlockingBackend
         ///<param name="sparrows">Sparrows list</param>
         public Vector2 Alignment (List<Sparrow> sparrows)
         {
-            //Default neighbour list
+            // Default neighbour list
             List<Sparrow> neighbours = this.getAllNeighbours(sparrows, World.NeighbourRadius);
             
-            //Calculate average velocity
+            // Calculate average velocity
             Vector2 averageVelocity = this.calculateAverageVelocity(neighbours) ;
 
             // Return when velocity is zero
@@ -96,16 +97,16 @@ namespace FlockingBackend
 
         private Vector2 calculateAverageVelocity(List<Sparrow> neighbours)
         {
-            //Default velocity sum
+            // Default velocity sum
             Vector2 velocitySum = new Vector2(0.0f, 0.0f);
 
-            //Add sparrow's velocities
+            // Add sparrow's velocities
             foreach(Sparrow s in neighbours)
             {
                velocitySum += s.Velocity;
             }
 
-            //return VelocityZero or velocity average
+            // Return VelocityZero or velocity average
             return neighbours.Count > 0 ? velocitySum/neighbours.Count : velocitySum;
             
         }
@@ -117,7 +118,7 @@ namespace FlockingBackend
         ///<param name="radius">radius  neighbour</param>
         private List<Sparrow> getAllNeighbours(List<Sparrow> sparrows, int radius)
         {
-            //Default neighbour list
+            // Default neighbour list
             List<Sparrow> neighbours = new List<Sparrow>(); 
 
             //Find all neighbouring sparrows
@@ -129,36 +130,37 @@ namespace FlockingBackend
                 }
             }
 
-            //Return all neighbouring sparrows
+            // Return all neighbouring sparrows
             return neighbours;
         }
 
         ///<summary>
         /// This method defines the second rule of boids algorithm (Cohesion).
         /// It uses helper method to calculate the vector that will be added
-        /// to amount to steer.
+        /// to amount to steer. Same Algorithm as Alignment except that it applies
+        /// to position.
         /// Method is public for test purposes
         ///</summary>
         ///<param name="sparrows">Sparrows list</param>
         public Vector2 Cohesion (List<Sparrow> sparrows)
         {
-            //Get all neighbouring sparrows
+            // Get all neighbouring sparrows
             List<Sparrow> neighbours = this.getAllNeighbours(sparrows, World.NeighbourRadius);
             
-            //Calculate the average position
+            // Calculate the average position
             Vector2 averagePosition = this.calculateAveragePosition(neighbours) ;
 
-            //Return when velocity is zero
+            // Return when velocity is zero
             if(Vector2.CheckIfZero(averagePosition)){
                 return averagePosition;
             }
 
-            //Calculate the cohesion vector
+            // Calculate the cohesion vector
             averagePosition = averagePosition - this.Position ;
             Vector2 normalizedDisplacementVector = (Vector2.Normalize(averagePosition)) * World.MaxSpeed;
             Vector2 sparrowVelocity = Vector2.Normalize(normalizedDisplacementVector - this.Velocity) ;
             
-            //Return the cohesion vector
+            // Return the cohesion vector
             return sparrowVelocity;
         }
 
@@ -169,10 +171,10 @@ namespace FlockingBackend
         ///<param name="sparrows">Neighbours list</param>
          private Vector2 calculateAveragePosition(List<Sparrow> neighbours)
         {
-            //Default average position
+            // Default average position
             Vector2 positionSum = new Vector2(0.0f, 0.0f);
 
-            //Add all neighbour sparrow positions
+            // Add all neighbour sparrow positions
             foreach(Sparrow s in neighbours)
             {
                positionSum += s.Position;
@@ -192,43 +194,54 @@ namespace FlockingBackend
         ///<param name="sparrows">Sparrows list</param>
         public Vector2 Avoidance (List<Sparrow> sparrows)
         {
-            //Get neighbouring sparrows
+            // Get neighbouring sparrows
             List<Sparrow> neighbours = this.getAllNeighbours(sparrows, World.AvoidanceRadius);
 
-            //Calculate average avoidance
+            // Calculate average avoidance
             Vector2 avoidanceAverage = CalculateAverageAvoidance(neighbours);
 
-            //Return when average is zero
+            // Return when average is zero
             if(Vector2.CheckIfZero(avoidanceAverage)){
                 return avoidanceAverage;
             }
 
-            //Calculate the avoidance vector
+            // Calculate the avoidance vector
             Vector2 normalizedAverageAvoidance = (Vector2.Normalize(avoidanceAverage)) * World.MaxSpeed;
             normalizedAverageAvoidance = normalizedAverageAvoidance - this.Velocity ;
             Vector2 avoidanceVector = (Vector2.Normalize(normalizedAverageAvoidance));
 
-            //Return the avoidance vector
+            // Return the avoidance vector
             return avoidanceVector;
 
         }
 
-         ///<summary>
+        ///<summary>
         /// Helper method returns the average vector for avoidance rule
         ///</summary>
         ///<param name="sparrows">Sparrows listt</param>
         private Vector2 CalculateAverageAvoidance(List<Sparrow> neighbours)
         {
-            //Default average avoidance
+            // Default sum avoidance
             Vector2 avoidanceVelocity = new Vector2(0.0f, 0.0f);
 
-            //Calculate the average avoidance
+            // Calculate the average avoidance
             foreach(Sparrow s in neighbours)
             {
-               float distance = (Vector2.DistanceSquared(this.Position, s.Position));
-               Vector2 diff = this.Position - s.Position;
-               diff /= distance;
-               avoidanceVelocity += diff;
+                float distance = (Vector2.DistanceSquared(this.Position, s.Position));
+                
+                // Prevent sparrow getting stuck on top of other sparrow and division by zero
+                if (distance == 0){
+                    return Vector2.Normalize(this.Velocity) ;
+                }
+                // Calculate difference
+                
+                Vector2 diff = this.Position - s.Position;
+                
+                //Divide by distance 
+                diff /= distance;
+                
+                // Add to the sum
+                avoidanceVelocity += diff;
             }
 
             //Return positionZero or position average
@@ -245,21 +258,26 @@ namespace FlockingBackend
             //Calculate squared distance between this Sparrow's and the raven's Position
             float distance = Vector2.DistanceSquared(this.Position, raven.Position);
 
-            //Prevent sparrow getting stuck next to raven
+            // Prevent sparrow getting stuck next to raven and division by zero
             if (distance == 0){
                 return Vector2.Normalize(this.Velocity) ;
             }
 
-            //Calculate the difference between the two positions
+            
             if(distance < Math.Pow(World.AvoidanceRadius, 2))
             {
+                // Calculate the difference between the two positions
                 Vector2 diff = this.Position - raven.Position;
+                
+                // Dividde difference by distance
                 diff /= distance;
+
+                // Normalize to Max Speed and return 
                 Vector2 normalizeFleeRavenVector = Vector2.Normalize(diff) * World.MaxSpeed;
                 return normalizeFleeRavenVector;
             }
 
-            //default return
+            // Default return
             return new Vector2(0.0f, 0.0f);
          }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace FlockingBackend
 {
     ///<summary>
-    ///This class is the access to the flock world.
+    ///This class is the access to the flock world (Backend).
     ///</summary>
     public class World
     {
@@ -31,6 +31,12 @@ namespace FlockingBackend
         // Auto-property for sparrows list
         public List<Sparrow> Sparrows { get; }
 
+        // The bird lower bound velocity range
+        public static int LowerBoundVelocity { get; }
+
+        // The bird higher bound velocity range
+         public static int HigherBoundVelocity { get; }
+
         // Auto-property for Raven
         public Raven RavenBird { get; }
 
@@ -45,6 +51,8 @@ namespace FlockingBackend
             MaxSpeed = 4;
             NeighbourRadius = 100;
             AvoidanceRadius = 50;
+            LowerBoundVelocity = -4;
+            HigherBoundVelocity = 5;
         }
 
         ///<summary>
@@ -82,7 +90,7 @@ namespace FlockingBackend
         }
 
         ///<summary>
-        ///This method raise the events . 
+        /// This method raise the events . 
         ///</summary>
         public void Update()
         {

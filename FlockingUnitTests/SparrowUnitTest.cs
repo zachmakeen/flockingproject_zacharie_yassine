@@ -216,8 +216,7 @@ namespace FlockingUnitTests
             Assert.AreEqual(expY, result.Vy, 0.01);
         }
 
-        // Test if avoidance returns valid alignment vector with nearest neighbours
-        // Not implemented yet   
+        // Test if avoidance returns valid alignment vector with nearest neighbours   
         [TestMethod]
         public void TestAvoidanceSmallDistance()
         {
@@ -243,8 +242,7 @@ namespace FlockingUnitTests
             Assert.AreEqual(expY, result.Vy, 0.01);
         }
 
-        // Test flee raven result vector
-        // Not implemented yet   
+        // Test flee raven result vector   
         [TestMethod]
         public void TestFleeRaven()
         {
@@ -265,8 +263,7 @@ namespace FlockingUnitTests
             Assert.AreEqual(expY, result.Vy, 0.01);
         }
 
-        // Test flee raven result zero vector
-        // Not implemented yet   
+        // Test flee raven result zero vector  
         [TestMethod]
         public void TestFleeRavenZero()
         {
@@ -287,8 +284,7 @@ namespace FlockingUnitTests
             Assert.AreEqual(expY, result.Vy, 0.01);
         }
 
-           // Test flee raven result zero vector
-        // Not implemented yet   
+        // Test flee raven result distance zero 
         [TestMethod]
         public void TestFleeDistanceZero()
         {
@@ -301,6 +297,7 @@ namespace FlockingUnitTests
             //Act
             Vector2 result = s1.FleeRaven(raven);
 
+            // Normalized points
             float expX = -0.600f;
             float expY = 0.800f;
 

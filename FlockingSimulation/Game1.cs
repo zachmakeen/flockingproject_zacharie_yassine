@@ -6,17 +6,22 @@ namespace FlockingSimulation
 {
     public class Game1 : Game
     {
+        // Graphics
         private GraphicsDeviceManager _graphics;
-
+        
+        // Sprite batch
         private SpriteBatch _spriteBatch;
 
+        // Access to the backend world
         private World world;
 
+        // Sprite class to draw sparrows
         private SparrowFlockSprite sparrowFlockSprite;
 
+        // Sprite class to draw raven
         private RavenSprite ravenSprite;
 
-        //
+        // Constructor initialiaze the game world.
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -25,18 +30,24 @@ namespace FlockingSimulation
             world = new World();
         }
 
+        // Initialize fields
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+    
             // Set Screen width and height
             _graphics.PreferredBackBufferHeight = World.Height;
             _graphics.PreferredBackBufferWidth = World.Width;
 
+            // Cretae Sparrow sprite
             sparrowFlockSprite = new SparrowFlockSprite(this, world.Sparrows);
+            
+            // Add it to component
             Components.Add(sparrowFlockSprite);
 
+            // Cretae Raven sprite
             ravenSprite = new RavenSprite(this, world.RavenBird);
+
+             // Add it to component
             Components.Add(ravenSprite);
 
             _graphics.ApplyChanges();
@@ -48,16 +59,17 @@ namespace FlockingSimulation
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
         }
 
+        // Update every tick
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            // Update the birds world 
             world.Update();
+            
             base.Update(gameTime);
         }
 
@@ -65,8 +77,7 @@ namespace FlockingSimulation
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-
+            // Darawing in sprite classes
             base.Draw(gameTime);
         }
     }

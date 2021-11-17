@@ -4,6 +4,10 @@ using System;
 
 namespace FlockingUnitTests
 {
+
+     ///<summary>
+    /// This class test Vector2 arithmetic methods.
+    ///</summary>
     [TestClass]
     public class Vector2UnitTest
     {

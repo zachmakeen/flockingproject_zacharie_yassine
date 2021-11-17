@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 namespace FlockingUnitTests
 {
+
+     ///<summary>
+    /// This class test the boids rules of the raven class.
+    ///</summary>
     [TestClass]
     public class RavenUnitTest
     {
