@@ -83,7 +83,6 @@ namespace FlockingBackend
             this.Velocity += this.amountToSteer;
             this.Position += this.Velocity;
             this.AppearOnOppositeSide();
-           
         }
     }
 }
